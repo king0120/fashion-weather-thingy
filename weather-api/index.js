@@ -1,10 +1,16 @@
 import express from 'express';
 import request from 'request';
 import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+
 import Weather from './classes/Weather'
 
 dotenv.config();
 
+//connect to mongo
+mongoose.connect('mongodb://localhost/weather')
+let db = mongoose.connection;
 
 let app = express();
 let port = 3000;
