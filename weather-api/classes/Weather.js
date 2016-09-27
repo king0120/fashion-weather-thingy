@@ -8,7 +8,7 @@ export default class Weather {
     this.windSpeed = res.wind.speed,
     this.humidity = res.main.humidity,
     this.rainChance = 'unknown',
-    this.status = res.weather.description,
+    this.description = res.weather.description,
     this.date = new Date();
   }
 }
