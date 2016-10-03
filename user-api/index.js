@@ -1,15 +1,23 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import passport from 'passport';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-dotenv.config();
 
+require('./models/db');
+require('./config/passport');
+
+
+dotenv.config(); 
+let routesApi = require('./routes/index'); 
 //connect to mongo
-// mongoose.connect('mongodb://localhost/weather')
-// let db = mongoose.connection;
+
 
 let app = express();
 let port = 4000;
+
+app.use(passport.initialize());
+app.use('/api', routesApi);
 
 app.get('/', (req,res,body) => res.send('HELLO!'));
 

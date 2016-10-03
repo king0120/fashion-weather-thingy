@@ -2,6 +2,7 @@ import passport from 'passport';
 import passportLocal from 'passport-local';
 import mongoose from 'mongoose';
 
+console.log('passport')
 let LocalStrategy = passportLocal.Strategy();
 let User = mongoose.model('User');
 

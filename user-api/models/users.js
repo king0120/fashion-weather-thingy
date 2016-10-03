@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 
 var userSchema = new mongoose.Schema({
@@ -36,3 +37,5 @@ userSchema.methods.generateJwt = function() {
     exp: parseInt(expiry.getTime() / 1000),
   }, process.env.JWT_TOKEN);
 };
+
+mongoose.model('User', userSchema);
