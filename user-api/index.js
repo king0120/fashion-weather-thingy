@@ -10,20 +10,20 @@ require('./config/passport');
 
 dotenv.config(); 
 let routesApi = require('./routes/index'); 
-//connect to mongo
-
 
 let app = express();
 let port = 4000;
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
-app.use('/api', routesApi);
 
 app.get('/', (req,res,body) => res.send('HELLO!'));
+// [SH] Use the API routes when path starts with /api
+app.use('/api', routesApi);
 
 
 
 app.listen(port, function () {
   console.log(`app listening on ${port}`);
-  console.log(process.env.WEATHER_KEY)
+  console.log(process.env.JWT_TOKEN)
 });

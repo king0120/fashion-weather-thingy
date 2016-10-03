@@ -1,18 +1,19 @@
-import express from 'express';
-import jwt from 'express-jwt';
-import ctrlProfile from '../controllers/profile';
-import ctrlAuth from '../controllers/authentication';
-
-export let router = express.Router();
-
-let auth = jwt({
+var express = require('express');
+var router = express.Router();
+var jwt = require('express-jwt');
+var auth = jwt({
   secret: process.env.JWT_TOKEN,
   userProperty: 'payload'
 });
 
-//profile
+var ctrlProfile = require('../controllers/profile');
+var ctrlAuth = require('../controllers/authentication');
+
+// profile
 router.get('/profile', auth, ctrlProfile.profileRead);
 
-//auth
+// authentication
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
+
+module.exports = router;
