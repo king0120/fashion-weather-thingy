@@ -1,20 +1,17 @@
 import React from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import AppBar from 'material-ui/AppBar';
+import NavButton from './NavButton';
 
 import Body from './Body';
 
 export default class App extends React.Component {
   render() {
-    return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme) }>
+    return (     
         <div>
           <AppBar title="My AppBar" />
+          <NavButton to="/login"/>
           <Body />
         </div>
-      </MuiThemeProvider>
     )
   }
 } 

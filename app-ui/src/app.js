@@ -1,14 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+
+import reducer from './reducers';
 
 import App from './components/App';
+import Login from './components/Login';
+import RouteContainer from './components/RouteContainer';
 
 
 
 injectTapEventPlugin();
 
-// import {Router, Route, hashHistory} from 'react-router';
+import {Router, Route, hashHistory} from 'react-router';
 
 // import {Provider} from 'react-redux';
 // import {createStore, applyMiddleware} from 'redux';
@@ -30,11 +36,14 @@ injectTapEventPlugin();
 
 // const store = createStoreWithMiddleware(reducer);
 
-// const routes = <Route component={App}>
-//   <Route path="/results" component={ResultsContainer} />
-//   <Route path="/" component={VotingContainer} />
-// </Route>
+let store = createStore(reducer)
 
+const routes = <Route component={RouteContainer}>
+  <Route path="/" component={App} />
+  <Route path="/login" component={Login} />
+</Route>
+
+// <Route path="/" component={VotingContainer} />
 // ReactDOM.render(
 //   <Provider store={store}>
 //     <Router history={hashHistory}>{routes}</Router>
@@ -43,6 +52,8 @@ injectTapEventPlugin();
 // )
 
 ReactDOM.render(
-  <App />
+  <Provider store={store}>
+    <Router history={hashHistory}>{routes}</Router>
+  </Provider>
   , document.getElementById('app')
 )
